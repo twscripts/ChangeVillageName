@@ -2,7 +2,7 @@
 // @name        Dorpen Hernoemen
 // @namespace   kc-productions.org
 // @namespace	https://github.com/coorenskevin/Dorpsnaam-Wijzigen
-// @version     1
+// @version     1.2
 // @include	https://*.tribalwars.*/game.php?*screen=overview_villages*
 // @include     https://*.tribalwars.*/game.php?*screen=main*
 // @grant       none
@@ -35,7 +35,7 @@ $(document).ready(function () {
 		var i = 1;
 		var j = 0;
 		//Alert box, after pressing okay the process will start
-		alert("25 Tabladen worden geopend, gelieve enkel op enter te drukken. Tabladen sluiten zichzelf eenmaal de naam gewijzigd is. Druk op OK om het proces te starten.");
+		alert("25 Tabladen worden geopend, gelieve te wachten. Tabladen sluiten zichzelf eenmaal de naam gewijzigd is. Druk op OK om het proces te starten.");
 		while(i<length+1){
 			//Get village ID and create link to it
 			var mid = villages[i-1].getAttribute("data-id");
@@ -63,7 +63,7 @@ $(document).ready(function () {
 			var newwindow = window.open(res);
 			//If this is last village in list, focus on its tab
 			if(i==length){
-				newwindow.focus();
+				//newwindow.focus();
 			}
 			j+=1;
 			i+=1;
@@ -71,8 +71,8 @@ $(document).ready(function () {
 			if(j>=25){
 				//If 25 are open, pause script and display alert to continue process later on 
 				j=0;
-				newwindow.focus();
-				alert("Klik op OK om 25 nieuwe dorpen te openen, gelieve wel eerst de openstaande tabladen af te werken om het blokkeren van de browser te voorkomen!")
+				//newwindow.focus();
+				alert("Klik op OK om 25 nieuwe dorpen te openen, gelieve wel eerst te wachten op het sluiten van de openstaande tabladen om het blokkeren van de browser te voorkomen!")
 				}
 			}
 		}
@@ -111,7 +111,7 @@ $(document).ready(function () {
 	    		//If textbox is found, change value and stop loop
 	    		if(inputs[i].type == "text"){
 	    			inputs[i].value=newname;
-	    			i = inputs.length;
+	    			i += 1;
 	    		}
 	    		else if(inputs[i].type =="submit"){
 	    			var button = inputs[i];
@@ -126,7 +126,7 @@ $(document).ready(function () {
 	    	//Remove change active so script doesn't change name again!
 	    	sessionStorage.removeItem("change");
 	    	//Focus on submit butoon, enter key will submit form!
-	    	button.focus();
+	    	button.click();
     	}
     	else{
     		//If name is already renamed, close current window
