@@ -2,11 +2,14 @@
 // @name        Dorpen Hernoemen
 // @namespace   kc-productions.org
 // @namespace	https://github.com/coorenskevin/Dorpsnaam-Wijzigen
-// @version     1.2
-// @include	https://*.tribalwars.*/game.php?*screen=overview_villages*
+// @version     1.3
+// @include	https://*.tribalwars.*/game.php?*screen=overview_villages&mode=combined
+// @include	https://*.tribalwars.*/game.php?*screen=overview_villages&mode=prod
+// @include	https://*.tribalwars.*/game.php?*screen=overview_villages
 // @include     https://*.tribalwars.*/game.php?*screen=main*
 // @grant       none
 // ==/UserScript==
+
 
 $(document).ready(function () {
     if(window.location.href.indexOf("screen=overview_villages") > -1) {
@@ -23,6 +26,13 @@ $(document).ready(function () {
 		    var numbering = true;
 		} else {
 		    var numbering = false;
+		}
+		if (confirm("Wenst u een willekeurig coordinaat toe te voegen aan de dorpsnamen?")) {
+			var temp = 1;
+			sessionStorage.setItem("coord", temp);
+		} else {
+			var temp = -1;
+			sessionStorage.setItem("coord", temp);
 		}
 		//Add space between name and numbering
 		setName(name + " ");
@@ -89,6 +99,11 @@ $(document).ready(function () {
     }
     else{
     	//SCREEN == MAIN
+
+    	function getRandomInt(min, max) {
+    	    return Math.floor(Math.random() * (max - min + 1)) + min;
+    	}
+    	
     	var content = document.getElementById('content_value'); 
     	var toKeep = content.innerHTML;
     	//Is script active, does name need to be changed?
@@ -104,13 +119,30 @@ $(document).ready(function () {
 	    	else{
 	    		var newname = name;
 	    	}
+	    	var coord = sessionStorage.getItem("coord");
+	    	//Check if coord is active (coord == -1 --> inactive)
+	    	if(coord>0){
+	    		
+	    		var left = getRandomInt(100,999);
+	    		var right = getRandomInt(100,999);
+	    		var co = " (";
+	    		co = co.concat(left);
+	    		co = co + "|";
+	    		co = co.concat(right);
+	    		co = co + ")";
+	    		//alert(co);
+	    		var finalname = newname.concat(co);
+	    	}
+	    	else{
+	    		var finalname = newname;
+	    	}
 	    	var inputs = document.getElementsByTagName('input');
 	    	//Find right textbox and change its value to the new name
 	    	var i = 0;
 	    	while (i<inputs.length){
 	    		//If textbox is found, change value and stop loop
 	    		if(inputs[i].type == "text"){
-	    			inputs[i].value=newname;
+	    			inputs[i].value=finalname;
 	    			i += 1;
 	    		}
 	    		else if(inputs[i].type =="submit"){
