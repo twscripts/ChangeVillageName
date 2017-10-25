@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name        Dorpen Hernoemen
+// @name        Dorpen Herbenoemen
 // @namespace   kc-productions.org
 // @namespace	https://github.com/coorenskevin/Dorpsnaam-Wijzigen
 // @version     1.3
