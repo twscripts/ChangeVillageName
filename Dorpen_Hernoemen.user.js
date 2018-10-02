@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name        Dorpen Hernoemen
-// @namespace   kc-productions.org
+// @namespace   www.kc-productions.org
 // @namespace	https://github.com/coorenskevin/Dorpsnaam-Wijzigen
 // @version     1.3
 // @include	https://*.tribalwars.*/game.php?*screen=overview_villages&mode=combined
