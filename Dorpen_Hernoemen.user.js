@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name        Dorpen Hernoemen
-// @namespace   kc-productions.org
-// @namespace	https://github.com/coorenskevin/Dorpsnaam-Wijzigen
-// @version     1.3
+// @namespace   http://wwww.kc-productions.org
+// @namespace	https://github.com/twscripts/Dorpsnaam-Wijzigen
+// @version     1.4
 // @include	https://*.tribalwars.*/game.php?*screen=overview_villages&mode=combined
 // @include	https://*.tribalwars.*/game.php?*screen=overview_villages&mode=prod
 // @include	https://*.tribalwars.*/game.php?*screen=overview_villages
@@ -99,7 +99,8 @@ $(document).ready(function () {
     }
     else{
     	//SCREEN == MAIN
-
+	
+	    //Random number function in range (min - max)
     	function getRandomInt(min, max) {
     	    return Math.floor(Math.random() * (max - min + 1)) + min;
     	}
@@ -137,7 +138,7 @@ $(document).ready(function () {
 	    		var finalname = newname;
 	    	}
 	    	var inputs = document.getElementsByTagName('input');
-	    	//Find right textbox and change its value to the new name
+	    	//Find right textbox and change its value to the new name and or number
 	    	var i = 0;
 	    	while (i<inputs.length){
 	    		//If textbox is found, change value and stop loop
@@ -161,7 +162,7 @@ $(document).ready(function () {
 	    	button.click();
     	}
     	else{
-    		//If name is already renamed, close current window
+    		//If name is already renamed, close current window proces done
     		if(sessionStorage.getItem("close")==1){
     			sessionStorage.removeItem("close");
     			close();
