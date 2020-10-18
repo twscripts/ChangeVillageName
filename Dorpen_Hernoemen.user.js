@@ -81,7 +81,6 @@ $(document).ready(function () {
 			if(j>=25){
 				//If 25 are open, pause script and display alert to continue process later on 
 				j=0;
-				//newwindow.focus();
 				alert("Klik op OK om 25 nieuwe dorpen te openen, gelieve wel eerst te wachten op het sluiten van de openstaande tabladen om het blokkeren van de browser te voorkomen!")
 				}
 			}
