@@ -45,7 +45,7 @@ $(document).ready(function () {
 		var i = 1;
 		var j = 0;
 		//Alert box, after pressing okay the process will start
-		alert("25 Tabladen worden geopend, gelieve te wachten. Tabladen sluiten zichzelf eenmaal de naam gewijzigd is. Druk op OK om het proces te starten.");
+		alert("25 Tabladen worden per keer geopend, gelieve te wachten. Tabladen sluiten zichzelf eenmaal de naam gewijzigd is. Druk op OK om het proces te starten.");
 		while(i<length+1){
 			//Get village ID and create link to it
 			var mid = villages[i-1].getAttribute("data-id");
@@ -55,11 +55,11 @@ $(document).ready(function () {
 			sessionStorage.setItem("change", 1);
 			//Set index for name
 			var str = "" + i;
-			//Amount of numbers needed in index (5 zeros = 00010 or 00001)
+			//Amount of padding needed in index (5 zeros = 00010 or 00001)
 			var pad = "00000";
 			//Create index
 			var index = pad.substring(0, pad.length - str.length) + str;
-			//Give through index to other tab		
+			//Pass through index to other tab		
 			if(numbering){
 				//Numbering is active pass through index for village
 				sessionStorage.setItem("index", index);
@@ -71,15 +71,11 @@ $(document).ready(function () {
 			}
 			//Open village in new window
 			var newwindow = window.open(res);
-			//If this is last village in list, focus on its tab
-			if(i==length){
-				//newwindow.focus();
-			}
 			j+=1;
 			i+=1;
 			//Check if 25 tabs have been opened
 			if(j>=25){
-				//If 25 are open, pause script and display alert to continue process later on 
+				//If 25 are open, pause script and display alert to continue process later on with more than 25 tabs browser may become inresponsive
 				j=0;
 				alert("Klik op OK om 25 nieuwe dorpen te openen, gelieve wel eerst te wachten op het sluiten van de openstaande tabladen om het blokkeren van de browser te voorkomen!")
 				}
@@ -93,13 +89,13 @@ $(document).ready(function () {
 		var t = document.createTextNode("Hernoem Dorpen!");
 		btn.onclick = renameVillages; 
 		btn.appendChild(t);
-		//Display button on bottom of page
+		//Append button to bottom of page
 		content.appendChild(btn);
     }
     else{
     	//SCREEN == MAIN
 	
-	    //Random number function in range (min - max)
+	 //Random number function in range (min - max)
     	function getRandomInt(min, max) {
     	    return Math.floor(Math.random() * (max - min + 1)) + min;
     	}
@@ -161,7 +157,7 @@ $(document).ready(function () {
 	    	button.click();
     	}
     	else{
-    		//If name is already renamed, close current window proces done
+    		//If village is already renamed, close current window, process done!
     		if(sessionStorage.getItem("close")==1){
     			sessionStorage.removeItem("close");
     			close();
